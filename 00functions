@@ -1,0 +1,8 @@
+# Adjust path, cleanly:
+# contains() function from 
+# http://blogs.sun.com/DaveLevy/entry/uograding_postgres_on_a_qube
+contains() {
+# $1 must be set
+    echo $1 | grep $2 > /dev/null
+    return $?
+} 

@@ -1,0 +1,7 @@
+# Set prompt similar to my old tcsh prompt:
+export PS1="\u@\h:\w \!$ "
+
+# Adjust root's shell prompt:
+if [ $USER = 'root' ]; then
+    export PS1="\u@\h:\w \!# "
+fi

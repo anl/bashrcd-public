@@ -1,0 +1,28 @@
+;; Local Library Path
+(add-to-list 'load-path "~/.emacs.d")
+
+;; Puppet mode
+(autoload 'puppet-mode "puppet-mode" "Puppet Mode." t)
+(add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
+(add-to-list 'interpreter-mode-alist '("puppet" . puppet-mode))
+
+;
+; Boilerplate auto-insertion in new files, from
+; http://www.metasyntax.net/guides/emacs.html#automatic-boilerplates
+;
+
+(require 'autoinsert)
+(setq auto-insert-directory "~/.emacs-templates/")
+(setq auto-insert-query nil)
+(defun template-list (insert-directory)
+(let (lst)
+  (dolist (elt (directory-files insert-directory nil "[^\\.]" nil) lst)
+  (setq lst (append lst `((,(concat "\\." elt "$") . ,elt)))))))
+
+(setq auto-insert-alist (template-list auto-insert-directory))
+(auto-insert-mode)
+
+;; YAML mode
+(let ((yaml-mode "~/.emacs.d/yaml-mode.el"))
+  (if (file-exists-p yaml-mode) (load-file yaml-mode)))
+(add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))

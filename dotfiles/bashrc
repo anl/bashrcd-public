@@ -1,0 +1,16 @@
+# Copy this file to ~/.bashrc; clone this repo to
+#  ~/.bashrc.d-components; create ~/.bashrc.d directory and symlink
+#  from there into selected scripts in ~/.bashrc.d-components.
+
+function run_scripts() {
+    for script in $1/*; do
+
+        # skip non-executable snippets
+        [ -x "$script" ] || continue
+
+        # execute $script in the context of the current shell
+        . $script
+    done
+}
+
+run_scripts ~/.bashrc.d

@@ -1,0 +1,82 @@
+# Aliases:
+alias bx='bundle exec'
+alias cl='clear'
+alias cp='cp -i'
+alias hi='history'
+alias l='ls -FC'
+alias mkpasswd='openssl rand -base64 24'
+alias mv='mv -i'
+alias sat='ssh-add -t 28800'
+alias whatsmyip="curl -s http://checkip.dyndns.org | sed 's/.*Current IP Address: \([0-9\.]\{7,15\}\).*/\1/'"
+
+# Color support:
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+os=`uname -s`
+if [ $os != 'SunOS' ] ; then
+    alias where='which -a'
+else
+    alias where='which'
+fi
+
+
+# Give me five random words; from 
+# <http://unstableme.blogspot.com/2008/05/generate-random-words-in-linux.html>
+five_words() {
+
+    WORDFILE="/usr/share/dict/words"
+    NUMWORDS=5
+
+    # Number of lines in $WORDFILE
+    tL=`awk 'NF!=0 {++c} END {print c}' $WORDFILE`
+
+    for i in `seq $NUMWORDS`; do
+	rnum=$((RANDOM%$tL+1))
+	sed -n "$rnum p" $WORDFILE
+    done
+
+}
+
+function hotfix-merge () {
+    set -e
+    git checkout master
+    git merge --no-ff hotfix-${1}
+    git tag -a $1
+    git checkout develop
+    git merge --no-ff hotfix-${1}
+    git branch -d hotfix-${1}
+    git push && git push --tags    
+    set +e
+}
+
+function ssh-forget () {
+    ssh-keygen -f ~/.ssh/known_hosts -R $1
+}
+
+function psa () {
+    if [ -x /usr/ucb/ps ]; then
+        PSBIN=/usr/ucb/ps
+    else
+        PSBIN=ps
+    fi
+    $PSBIN aux | egrep "$1|PID"
+}
+
+function psx () {
+    if [ -x /usr/ucb/ps ]; then
+        PSBIN=/usr/ucb/ps
+    else
+        PSBIN=ps
+    fi
+    $PSBIN ax | egrep "$1|PID"
+}
+
+function venv_init () {
+    . $HOME/.venvburrito/startup.sh
+}

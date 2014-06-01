@@ -1,0 +1,4 @@
+contains $PATH ${HOME}/bin
+if [ $? != 0 ] ; then
+    export PATH=${HOME}/bin:${PATH}
+fi

@@ -1,0 +1,7 @@
+# Assume Homebrew and Command Line Tools for Xcode are installed:
+PATH=/usr/local/bin:/usr/local/sbin:${PATH}:/Developer/usr/bin
+
+# Add VMware Fusion executables to path:
+if [ -d /Applications/VMware\ Fusion.app/Contents/Library ] ; then
+  PATH=${PATH}:/Applications/VMware\ Fusion.app/Contents/Library
+fi
