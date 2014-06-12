@@ -1,7 +1,14 @@
-# Assume Homebrew and Command Line Tools for Xcode are installed:
-PATH=/usr/local/bin:/usr/local/sbin:${PATH}:/Developer/usr/bin
+# Only run this on OS X:
+osx_host
+if [ $? -eq 0 ] ; then 
 
-# Add VMware Fusion executables to path:
-if [ -d /Applications/VMware\ Fusion.app/Contents/Library ] ; then
-  PATH=${PATH}:/Applications/VMware\ Fusion.app/Contents/Library
+    # Make homebrew come before developer tools:
+    if [ -d /Developer/usr/bin ] ; then
+	PATH=/usr/local/bin:/usr/local/sbin:${PATH}:/Developer/usr/bin
+    fi
+
+    # Add VMware Fusion executables to path:
+    if [ -d /Applications/VMware\ Fusion.app/Contents/Library ] ; then
+	PATH=${PATH}:/Applications/VMware\ Fusion.app/Contents/Library
+    fi
 fi
