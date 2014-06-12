@@ -6,3 +6,8 @@ contains() {
     echo $1 | grep $2 > /dev/null
     return $?
 } 
+
+osx_host() {
+    test $(uname -s) = 'Darwin'
+    return $?
+}
