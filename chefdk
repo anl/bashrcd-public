@@ -1,1 +1,5 @@
 alias chefdk_on='eval "$(/opt/chefdk/bin/chef shell-init bash)"'
+
+if [ -x /usr/bin/docker ] ; then
+    export KITCHEN_YAML=.kitchen.docker.yaml
+fi
