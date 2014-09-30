@@ -9,5 +9,9 @@ contains() {
 
 osx_host() {
     test $(uname -s) = 'Darwin'
-    return $?
+    if [ $? -eq 0 ] ; then
+	echo 'yes'
+    else
+	echo 'no'
+    fi
 }
