@@ -12,7 +12,6 @@ if [ $(osx_host) = 'yes' ] ; then
     fi
 
     if [ -x /usr/local/bin/emacs ] ; then
-	echo 'found emacs'
 	alias emacs=/usr/local/bin/emacs
     fi
 fi
