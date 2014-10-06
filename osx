@@ -1,6 +1,5 @@
 # Only run this on OS X:
-osx_host
-if [ $? -eq 0 ] ; then 
+if [ $(osx_host) = 'yes' ] ; then
 
     # Make homebrew come before developer tools:
     if [ -d /Developer/usr/bin ] ; then
@@ -18,5 +17,9 @@ if [ $? -eq 0 ] ; then
     # Add VMware Fusion executables to path:
     if [ -d /Applications/VMware\ Fusion.app/Contents/Library ] ; then
 	PATH=${PATH}:/Applications/VMware\ Fusion.app/Contents/Library
+    fi
+
+    if [ -x /usr/local/bin/emacs ] ; then
+	alias emacs=/usr/local/bin/emacs
     fi
 fi
