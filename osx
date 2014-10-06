@@ -7,6 +7,14 @@ if [ $? -eq 0 ] ; then
 	PATH=/usr/local/bin:/usr/local/sbin:${PATH}:/Developer/usr/bin
     fi
 
+    # Ensure /usr/local/sbin is in path, if it exists:
+    if [ -d /usr/local/sbin ] ; then
+	contains $PATH /usr/local/sbin
+	if [ $? != 0 ] ; then
+	    PATH=/usr/local/sbin:${PATH}
+	fi
+    fi
+
     # Add VMware Fusion executables to path:
     if [ -d /Applications/VMware\ Fusion.app/Contents/Library ] ; then
 	PATH=${PATH}:/Applications/VMware\ Fusion.app/Contents/Library
