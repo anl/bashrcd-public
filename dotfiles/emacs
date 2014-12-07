@@ -1,5 +1,5 @@
 ;; Local Library Path
-(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 
 ;; Puppet mode
 (autoload 'puppet-mode "puppet-mode" "Puppet Mode." t)
