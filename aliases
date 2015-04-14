@@ -69,6 +69,15 @@ function psa () {
     $PSBIN aux | egrep "$1|PID"
 }
 
+function psw () {
+    if [[ $(uname) == 'Linux' ]]; then
+	PSCMD='ps -eo pid,wchan:42,cmd'
+    else
+	PSCMD='ps -ef'
+    fi
+    $PSCMD | egrep "$1|PID"
+}
+
 function psx () {
     if [ -x /usr/ucb/ps ]; then
         PSBIN=/usr/ucb/ps
