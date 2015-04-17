@@ -14,3 +14,15 @@ syspip(){
 if [ -x /usr/local/share/python/virtualenv ] ; then
     export PATH=${PATH}:/usr/local/share/python
 fi
+
+# Function to activate a virtualenv:
+activate() {
+    if [ "x$VIRTUAL_ENV" != 'x' ]; then
+	deactivate
+    fi
+    if [ -d $1 ]; then
+	. ${1}/bin/activate
+    else
+	. ~/virtualenvs/${1}/bin/activate
+    fi
+}
