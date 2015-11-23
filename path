@@ -6,3 +6,7 @@ fi
 if [ -d /opt/jdk1.8.0_66/bin ] ; then
     export PATH=${PATH}:/opt/jdk1.8.0_66/bin
 fi
+
+if [ -d /opt/idea-IC-143.382.35/bin ] ; then
+    export PATH=${PATH}:/opt/idea-IC-143.382.35/bin
+fi
