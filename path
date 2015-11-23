@@ -2,3 +2,7 @@ contains $PATH ${HOME}/bin
 if [ $? != 0 ] ; then
     export PATH=${HOME}/bin:${PATH}
 fi
+
+if [ -d /opt/jdk1.8.0_66/bin ] ; then
+    export PATH=${PATH}:/opt/jdk1.8.0_66/bin
+fi
