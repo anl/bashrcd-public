@@ -3,8 +3,8 @@ if [ $? != 0 ] ; then
     export PATH=${HOME}/bin:${PATH}
 fi
 
-if [ -d /opt/jdk1.8.0_66/bin ] ; then
-    export PATH=${PATH}:/opt/jdk1.8.0_66/bin
+if [ -d /opt/jdk1.8.0_92/bin ] ; then
+    export PATH=${PATH}:/opt/jdk1.8.0_92/bin
 fi
 
 if [ -d /opt/idea-IC-143.2370.31/bin ] ; then
