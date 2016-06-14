@@ -2,11 +2,3 @@ contains $PATH ${HOME}/bin
 if [ $? != 0 ] ; then
     export PATH=${HOME}/bin:${PATH}
 fi
-
-if [ -d /opt/jdk1.8.0_92/bin ] ; then
-    export PATH=${PATH}:/opt/jdk1.8.0_92/bin
-fi
-
-if [ -d /opt/idea-IC-145.972.3/bin ] ; then
-    export PATH=${PATH}:/opt/idea-IC-145.972.3/bin
-fi
