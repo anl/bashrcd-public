@@ -1,0 +1,3 @@
+if [ -d /opt/exercism/bin ] ; then
+    export PATH=${PATH}:/opt/exercism/bin
+fi
