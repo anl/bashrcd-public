@@ -1,2 +1,10 @@
+# Set IntelliJ path:
+export PATH=/opt/idea/bin:${PATH}
+
+# Add Java to path:
+if [ -d /opt/jdk1.8.0_92/bin ] ; then
+    export PATH=${PATH}:/opt/jdk1.8.0_92/bin
+fi
+
 # https://youtrack.jetbrains.com/issue/IDEA-78860
 export IBUS_ENABLE_SYNC_MODE=1
