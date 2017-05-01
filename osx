@@ -22,4 +22,7 @@ if [ $(osx_host) = 'yes' ] ; then
     if [ -x /usr/local/bin/emacs ] ; then
 	alias emacs=/usr/local/bin/emacs
     fi
+
+    # Set JAVA_HOME
+    export JAVA_HOME=$(/usr/libexec/java_home)
 fi
