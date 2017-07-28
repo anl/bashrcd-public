@@ -1,3 +1,7 @@
+if [ -f /etc/bash_completion ] ; then
+   . /etc/bash_completion
+fi
+
 # Turn on tab completion with extra information:
 set show-all-if-ambiguous on
 set visible-stats on
