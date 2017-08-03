@@ -23,6 +23,11 @@ if [ $(osx_host) = 'yes' ] ; then
 	alias emacs=/usr/local/bin/emacs
     fi
 
+    # Set GROOVY_HOME
+    if [ -x /usr/local/bin/groovy ] ; then
+	export GROOVY_HOME=/usr/local/opt/groovy/libexec
+    fi
+
     # Set JAVA_HOME
     export JAVA_HOME=$(/usr/libexec/java_home)
 fi
