@@ -1,0 +1,1 @@
+alias ec2_instances="aws ec2 describe-instances --query 'Reservations[*].Instances[*].{type:InstanceType,state:State.Name,tags:Tags}' --output text"
