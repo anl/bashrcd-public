@@ -1,6 +1,11 @@
 # Only run this on OS X:
 if [ $(osx_host) = 'yes' ] ; then
 
+    # If there is a python@2 formula installed, prepend it to PATH:
+    if [ -d /usr/local/opt/python@2/bin ] ; then
+	PATH=/usr/local/opt/python@2/bin:${PATH}
+    fi
+
     # Make homebrew come before developer tools:
     if [ -d /Developer/usr/bin ] ; then
 	PATH=/usr/local/bin:/usr/local/sbin:${PATH}:/Developer/usr/bin
@@ -21,6 +26,11 @@ if [ $(osx_host) = 'yes' ] ; then
 
     if [ -x /usr/local/bin/emacs ] ; then
 	alias emacs=/usr/local/bin/emacs
+    fi
+
+    # Set GROOVY_HOME
+    if [ -x /usr/local/bin/groovy ] ; then
+	export GROOVY_HOME=/usr/local/opt/groovy/libexec
     fi
 
     # Set JAVA_HOME
