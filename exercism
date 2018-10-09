@@ -1,3 +1,7 @@
 if [ -d /opt/exercism/bin ] ; then
     export PATH=${PATH}:/opt/exercism/bin
 fi
+
+if [ -f ~/.config/exercism/exercism_completion.bash ]; then
+    source ~/.config/exercism/exercism_completion.bash
+fi
