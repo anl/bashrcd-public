@@ -1,0 +1,5 @@
+# Enable Molecule auto-complete if Molecule is in-path
+which molecule 2>&1
+if [[ $? == 0 ]] ; then
+    eval "$(_MOLECULE_COMPLETE=source molecule)"
+fi
