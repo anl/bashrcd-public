@@ -1,0 +1,5 @@
+function devault_string {
+    vars_yaml=$1
+    variable=$2
+    yq read $vars_yaml $variable | ansible-vault decrypt
+}
