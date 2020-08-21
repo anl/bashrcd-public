@@ -2,6 +2,7 @@
 alias bx='bundle exec'
 alias cl='clear'
 alias cp='cp -i'
+alias blame-lines='git ls-files | while read f; do git blame -w --line-porcelain -- "$f" | grep -I "^author "; done | sort -f | uniq -ic | sort -n' # https://gist.github.com/amitchhajer/4461043#gistcomment-3123042
 alias eamcs='emacs -nw'
 alias emacs='emacs -nw'
 alias hi='history'
