@@ -1,0 +1,5 @@
+# Enable asdf:
+. "$HOME/.asdf/asdf.sh"
+
+# Enable asdf shell completions:
+. "$HOME/.asdf/completions/asdf.bash"
