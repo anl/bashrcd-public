@@ -1,0 +1,12 @@
+get_sha_for_action() {
+    # Split the input into repo and tag
+    repo="${1%@*}"        # Extracts everything before the '@'
+    tag="${1#*@}"         # Extracts everything after the '@'
+
+    # Fetch the SHA for the tag using curl and the GitHub API
+    sha=$(curl -s -H "Accept: application/vnd.github.v3+json" \
+    "https://api.github.com/repos/$repo/git/ref/tags/$tag" | jq -r '.object.sha')
+
+    # Return the SHA
+    echo "$sha"
+}
