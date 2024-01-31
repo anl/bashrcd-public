@@ -1,0 +1,2 @@
+# Add tfenv to PATH
+export PATH=${PATH}:${HOME}/.tfenv/bin
