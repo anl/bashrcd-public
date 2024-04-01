@@ -3,10 +3,25 @@ get_sha_for_action() {
     repo="${1%@*}"        # Extracts everything before the '@'
     tag="${1#*@}"         # Extracts everything after the '@'
 
-    # Fetch the SHA for the tag using curl and the GitHub API
-    sha=$(curl -s -H "Accept: application/vnd.github.v3+json" \
-    "https://api.github.com/repos/$repo/git/ref/tags/$tag" | jq -r '.object.sha')
+    # Fetch the tag information using curl and the GitHub API
+    tag_info=$(curl -s -H "Accept: application/vnd.github.v3+json" \
+    "https://api.github.com/repos/$repo/git/refs/tags/$tag")
 
-    # Return the SHA
-    echo "$sha"
+    # Check if the tag is an annotated tag
+    if echo "$tag_info" | grep -q '"type": "tag"'; then
+        # Annotated tag
+        tag_sha=$(echo "$tag_info" | jq -r '.object.sha')
+        commit_sha=$(curl -s -H "Accept: application/vnd.github.v3+json" \
+        "https://api.github.com/repos/$repo/git/tags/$tag_sha" | jq -r '.object.sha')
+
+        echo "Annotated tag '$tag' found."
+        echo "Tag SHA: $tag_sha"
+        echo "Commit SHA: $commit_sha"
+    else
+        # Lightweight tag
+        commit_sha=$(echo "$tag_info" | jq -r '.object.sha')
+
+        echo "Lightweight tag '$tag' found."
+        echo "Commit SHA: $commit_sha"
+    fi
 }
