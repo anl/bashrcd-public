@@ -1,5 +1,5 @@
-# Enable asdf:
-. "$HOME/.asdf/asdf.sh"
+# Add asdf binaries to path:
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 # Enable asdf shell completions:
-. "$HOME/.asdf/completions/asdf.bash"
+. <(asdf completion bash)
