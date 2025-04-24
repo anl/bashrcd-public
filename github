@@ -1,3 +1,29 @@
+get_latest_action_sha() {
+  action=$1
+
+  latest_tag=$(gh api repos/${1}/releases/latest | jq -r .tag_name)
+  tag_info=$(gh api repos/${1}/git/refs/tags/${latest_tag})
+  tag_type=$(echo $tag_info | jq -r .type)
+
+  if [[ $tag_type == 'tag' ]] ; then
+      echo "Annotated tag '$tag' found."
+
+      tag_sha=$(echo $tag_info | jq -r .object.sha) 
+      echo "Tag SHA: $tag_sha"
+
+      commit_sha=$(gh api repos/${1}/git/tags/${tag_sha} | jq -r .object.sha)
+      echo "Commit SHA: $commit_sha"
+  elif [[ $tag_type == 'null' ]] ; then
+      echo "Lightweight tag '$latest_tag' found."
+
+      commit_sha=$(echo $tag_info | jq -r .object.sha)
+      echo "Commit SHA: $commit_sha"
+  else
+      echo "Unknown tag type found: $tag_type"
+      exit 1
+  fi
+}
+
 get_sha_for_action() {
     # Split the input into repo and tag
     repo="${1%@*}"        # Extracts everything before the '@'
